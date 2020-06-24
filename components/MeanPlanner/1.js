@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, Image, Button } from 'react-native';
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
         <View style={{ flexDirection: 'row', height: 150, backgroundColor: "#FFF1E8", margin: 20 }}>
@@ -20,6 +20,7 @@ function HomeScreen() {
               title="Create a Meal Plan"
               color="#FF5800"
               style={{ marginButtom: 20 }}
+              onPress={() => navigation.navigate('Meal Plan 3')}
             />
           </View>
         </View>

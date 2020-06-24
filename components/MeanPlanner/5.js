@@ -51,6 +51,7 @@ function HomeScreen() {
               title="Done"
               color="#FF5800"
               style={{ marginButtom: 20 }}
+              onPress={() => alert('Done')}
             />
           </View>
         </View>

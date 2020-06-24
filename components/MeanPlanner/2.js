@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {Calendar} from 'react-native-calendars';
-import { Text, View, Image, Button } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
           <Calendar
@@ -23,9 +24,11 @@ function HomeScreen() {
                 <Text>Breakfast</Text>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
                 <Image 
                 source={require('../../assets/add.png')}
                 />
+                </TouchableOpacity>
             </View>
             </View>
             <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFEB3BB3", height: 60 }}>
@@ -38,9 +41,11 @@ function HomeScreen() {
                 <Text>Lunch</Text>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
                 <Image 
                 source={require('../../assets/add.png')}
                 />
+                </TouchableOpacity>
             </View>
             </View>
             <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFA45ECC", height: 60 }}>
@@ -53,9 +58,11 @@ function HomeScreen() {
                 <Text>Dinner</Text>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
                 <Image 
                 source={require('../../assets/add.png')}
                 />
+                </TouchableOpacity>
             </View>
             </View>
             <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFB38BCC", height: 60 }}>
@@ -68,9 +75,11 @@ function HomeScreen() {
                 <Text>Snacks</Text>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
                 <Image 
                 source={require('../../assets/add.png')}
                 />
+                </TouchableOpacity>
             </View>
             </View>
             <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#CAFF95", height: 60 }}>
@@ -83,9 +92,11 @@ function HomeScreen() {
                 <Text>Salads</Text>
             </View>
             <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
                 <Image 
                 source={require('../../assets/add.png')}
                 />
+                </TouchableOpacity>
             </View>
             </View>
         </View>

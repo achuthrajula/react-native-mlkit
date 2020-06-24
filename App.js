@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Image, Button } from 'react-native';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -35,7 +35,47 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
       <Stack.Screen
-        name="Meal Plan"
+        name="Meal Plan 1"
+        component={HomeScreen1}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+          
+        }}
+      />
+      <Stack.Screen
+        name="Meal Plan 2"
+        component={HomeScreen2}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+          
+        }}
+      />
+      <Stack.Screen
+        name="Meal Plan 3"
+        component={HomeScreen3}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+          
+        }}
+      />
+      <Stack.Screen
+        name="Meal Plan 4"
+        component={HomeScreen4}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+          
+        }}
+      />
+      <Stack.Screen
+        name="Meal Plan 5"
+        component={HomeScreen5}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+          
+        }}
+      />
+      <Stack.Screen
+        name="Meal Plan 6"
         component={HomeScreen6}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
