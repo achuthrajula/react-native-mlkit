@@ -34,13 +34,13 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen
         name="Bluetooth Pairing"
         component={bluetooth}
         />
-      </Stack.Navigator>
-      {/* <Stack.Navigator>
+      </Stack.Navigator> */}
+      <Stack.Navigator>
       <Stack.Screen
         name="Meal Plan 1"
         component={HomeScreen1}
@@ -89,7 +89,7 @@ export default function App() {
           
         }}
       />
-    </Stack.Navigator> */}
+    </Stack.Navigator>
     </NavigationContainer>
   );
 }

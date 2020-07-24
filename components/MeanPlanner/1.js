@@ -24,12 +24,6 @@ function HomeScreen({ navigation }) {
               style={{ text: {  }, container: { marginBottom: 20, backgroundColor: "#FF5800" } }}
               onPress={() => navigation.navigate('Meal Plan 3')}
             />
-            {/* <Button 
-              title="Create a Meal Plan"
-              color="#FF5800"
-              style={{ marginButtom: 20 }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
-            /> */}
           </View>
         </View>
       </View>

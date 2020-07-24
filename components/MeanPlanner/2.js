@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Calendar} from 'react-native-calendars';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 
 function HomeScreen({ navigation }) {
+    const vessel = [{title: "Breakfast", backgroundColor: "#FFE50061", source: require('../../assets/breakfast.png')}, {title: "Lunch", backgroundColor: "#FFEB3BB3", source: require("../../assets/lunch.png")}, {title: "Dinner", backgroundColor: "#FFA45ECC", source: require("../../assets/dinner.png")}, {title: "Snacks", backgroundColor: "#FFB38BCC", source: require("../../assets/snacks.png")}, {title: "Salads", backgroundColor: "#CAFF95", source: require("../../assets/salads.png")}]
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
           <Calendar
@@ -14,91 +14,27 @@ function HomeScreen({ navigation }) {
             <View>
                 <Text style={{ color: "#FF5800", fontSize: 20 }}>Meals</Text>
             </View>
-            <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFE50061", height: 60 }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
-                <Image
-                source={require('../../assets/breakfast.png')}
-            />
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                <Text>Breakfast</Text>
-            </View>
-            <View style={{justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
-                <Image 
-                source={require('../../assets/add.png')}
-                />
-                </TouchableOpacity>
-            </View>
-            </View>
-            <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFEB3BB3", height: 60 }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
-                <Image
-                source={require('../../assets/lunch.png')}
-            />
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                <Text>Lunch</Text>
-            </View>
-            <View style={{justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
-                <Image 
-                source={require('../../assets/add.png')}
-                />
-                </TouchableOpacity>
-            </View>
-            </View>
-            <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFA45ECC", height: 60 }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
-                <Image
-                source={require('../../assets/dinner.png')}
-            />
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                <Text>Dinner</Text>
-            </View>
-            <View style={{justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
-                <Image 
-                source={require('../../assets/add.png')}
-                />
-                </TouchableOpacity>
-            </View>
-            </View>
-            <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#FFB38BCC", height: 60 }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
-                <Image
-                source={require('../../assets/snacks.png')}
-            />
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                <Text>Snacks</Text>
-            </View>
-            <View style={{justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
-                <Image 
-                source={require('../../assets/add.png')}
-                />
-                </TouchableOpacity>
-            </View>
-            </View>
-            <View style={{ flexDirection: 'row', margin: 5, backgroundColor:  "#CAFF95", height: 60 }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
-                <Image
-                source={require('../../assets/salads.png')}
-            />
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                <Text>Salads</Text>
-            </View>
-            <View style={{justifyContent: 'center', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
-                <Image 
-                source={require('../../assets/add.png')}
-                />
-                </TouchableOpacity>
-            </View>
-            </View>
+            {vessel.map(dish => {
+                return (
+                    <View key={dish.title} style={{ flexDirection: 'row', margin: 5, backgroundColor: dish.backgroundColor, height: 60 }}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
+                        <Image 
+                            source={dish.source}
+                        />
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                        <Text>{dish.title}</Text>
+                    </View>
+                    <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}>
+                            <Image 
+                                source={require('../../assets/add.png')}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                )
+            })}
         </View>
       </View>
     );
