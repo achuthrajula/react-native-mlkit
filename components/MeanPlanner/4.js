@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Text, View, Image, Button, ScrollView } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
+import { Button } from 'react-native-material-ui'
 
 function HomeScreen({ navigation }) {
+    const categories = [{title: 'Breakfast', source: require('../../assets/category/1.png')}, {title: 'Lunch', source: require('../../assets/category/2.png')}, {title: 'Dinner', source: require('../../assets/category/3.png')}, {title: 'Soup', source: require('../../assets/category/4.png')}, {title: 'Curry', source: require('../../assets/category/5.png')}, {title: 'Rice', source: require('../../assets/category/6.png')}]
+    const timings = ["07:30 AM", "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM"]
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -38,66 +41,20 @@ function HomeScreen({ navigation }) {
                 <Text style={{ fontSize: 20 }}>Choose from categories</Text>
             </View>
             <View flexDirection="row">
-                <View style={{ margin: 3 }}>
-                    <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
-                        <Image
-                            source={require('../../assets/category/1.png')}
-                        />
-                    </View>
-                    <View>
-                        <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>Breakfast</Text>
-                    </View>
-                </View>
-                <View style={{ margin: 3 }}>
-                    <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
-                        <Image
-                            source={require('../../assets/category/2.png')}
-                        />
-                    </View>
-                    <View>
-                        <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>Lunch</Text>
-                    </View>
-                </View>
-                <View style={{ margin: 3 }}>
-                    <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
-                        <Image
-                            source={require('../../assets/category/3.png')}
-                        />
-                    </View>
-                    <View>
-                        <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>Dinner</Text>
-                    </View>
-                </View>
-                <View style={{ margin: 3 }}>
-                    <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
-                        <Image
-                            source={require('../../assets/category/4.png')}
-                        />
-                    </View>
-                    <View>
-                        <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>Soup</Text>
-                    </View>
-                </View>
-                <View style={{ margin: 3 }}>
-                    <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
-                        <Image
-                            source={require('../../assets/category/5.png')}
-                        />
-                    </View>
-                    <View>
-                        <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>Curry</Text>
-                    </View>
-                </View>
-                <View style={{ margin: 3 }}>
-                    <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
-                        <Image
-                            source={require('../../assets/category/6.png')}
-                        />
-                    </View>
-                    <View>
-                        <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>Rice</Text>
-                    </View>
-                </View>
+                {categories.map( category => {
+                    return(
+                        <View style={{ margin: 3 }} key={category.title}>
+                            <View style={{ height: 60, width: 60, borderRadius: 30, borderWidth: 2, borderColor: "#FF5800", justifyContent: 'center', alignItems: 'center' }}>
+                                <Image
+                                    source={category.source}
+                                />
+                            </View>
+                            <View>
+                    <Text style={{ margin: 10, justifyContent: 'center', alignItems: 'center' }}>{category.title}</Text>
+                            </View>
+                        </View>
+                    )
+                })}
           </View>
           <View style={{ margin: 10 }}>
                 <View style={{ flexDirection: 'row', margin: 5, height: 50 }}>
@@ -125,35 +82,29 @@ function HomeScreen({ navigation }) {
         <View>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>Select Time</Text>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={{ margin: 10 }}>
-                    <Button title="07:30 AM" color="#FF5800" />
-                </View>
-                <View style={{ margin: 10 }}>
-                    <Button title="08:00 AM" color="#FF5800" />
-                </View>
-                <View style={{ margin: 10 }}>
-                    <Button title="08:30 AM" color="#FF5800" />
-                </View>
-                <View style={{ margin: 10 }}>
-                    <Button title="09:00 AM" color="#FF5800" />
-                </View>
-                <View style={{ margin: 10 }}>
-                    <Button title="09:30 AM" color="#FF5800" />
-                </View>
-                <View style={{ margin: 10 }}>
-                    <Button title="10:00 AM" color="#FF5800" />
-                </View>
-                <View style={{ margin: 10 }}>
-                    <Button title="10:30 AM" color="#FF5800" />
-                </View>
+                {timings.map(time => {
+                    return(
+                        <View key={time} style={{ margin: 10 }}>
+                            {/* <Button title={time} color="#FF5800" /> */}
+                            <Button 
+                                raised
+                                primary 
+                                text={time}
+                                style={{ text: {  }, container: { marginBottom: 20, backgroundColor: "#FF5800" } }}
+                                onPress={() => navigation.navigate('Meal Plan 3')}
+                            />
+                        </View>
+                    )
+                })}
             </ScrollView>
         </View>
         <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
           <View style={{ marginBottom: 20, width: 200 }}>
-            <Button 
-              title="Create a Meal Plan"
-              color="#FF5800"
-              style={{ marginButtom: 20 }}
+          <Button 
+              raised
+              primary 
+              text="Create a Meal Plan"
+              style={{ text: {  }, container: { marginBottom: -5, backgroundColor: "#FF5800" } }}
               onPress={() => navigation.navigate('Meal Plan 6')}
             />
           </View>
