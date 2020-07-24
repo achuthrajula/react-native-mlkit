@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import bluetooth from './components/settings/bluetooth'
 import HomeScreen1 from './components/MeanPlanner/1.js';
 import HomeScreen2 from './components/MeanPlanner/2.js';
 import HomeScreen3 from './components/MeanPlanner/3.js';
@@ -34,6 +35,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+        name="Bluetooth Pairing"
+        component={bluetooth}
+        />
+      </Stack.Navigator>
+      {/* <Stack.Navigator>
       <Stack.Screen
         name="Meal Plan 1"
         component={HomeScreen1}
@@ -82,7 +89,7 @@ export default function App() {
           
         }}
       />
-    </Stack.Navigator>
+    </Stack.Navigator> */}
     </NavigationContainer>
   );
 }

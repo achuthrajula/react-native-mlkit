@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, Image, Button } from 'react-native';
+import { Text, View, Image } from 'react-native';
+import { Button } from 'react-native-material-ui';
 
 function HomeScreen({ navigation }) {
     return (
@@ -17,11 +18,18 @@ function HomeScreen({ navigation }) {
         <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
           <View style={{ marginBottom: 20, width: 200 }}>
             <Button 
+              raised
+              primary 
+              text="Create a Meal Plan"
+              style={{ text: {  }, container: { marginBottom: 20, backgroundColor: "#FF5800" } }}
+              onPress={() => navigation.navigate('Meal Plan 3')}
+            />
+            {/* <Button 
               title="Create a Meal Plan"
               color="#FF5800"
               style={{ marginButtom: 20 }}
               onPress={() => navigation.navigate('Meal Plan 3')}
-            />
+            /> */}
           </View>
         </View>
       </View>
