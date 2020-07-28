@@ -5,6 +5,9 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 import login from './components/User/login';
 import signup from './components/User/signup';
+import settingLayout from './components/settings/settingsLayout';
+import userOnboard1 from './components/settings/userOnboard-1';
+import userOnboard2 from './components/settings/userOnboard-2';
 import bluetooth from './components/settings/bluetooth';
 import pantryEmpty from './components/pantry/pantryEmpty';
 import pantryFull from './components/pantry/pantryFull';
@@ -15,6 +18,7 @@ import HomeScreen3 from './components/MeanPlanner/3.js';
 import HomeScreen4 from './components/MeanPlanner/4.js';
 import HomeScreen5 from './components/MeanPlanner/5.js';
 import HomeScreen6 from './components/MeanPlanner/6.js';
+import settingsLayout from './components/settings/settingsLayout';
 
 function User() {
   return(
@@ -147,6 +151,18 @@ function Pantry() {
 function SettingsScreen() {
   return (
       <Stack.Navigator>
+        <Stack.Screen
+        name="Settings Layout"
+        component={settingsLayout}
+        />
+        <Stack.Screen
+        name="User Onboard 1"
+        component={userOnboard1}
+        />
+        <Stack.Screen
+        name="User Onboard 2"
+        component={userOnboard2}
+        />
         <Stack.Screen
         name="Bluetooth Pairing"
         component={bluetooth}
