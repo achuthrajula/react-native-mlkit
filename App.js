@@ -8,7 +8,9 @@ import signup from './components/User/signup';
 import settingLayout from './components/settings/settingsLayout';
 import userOnboard1 from './components/settings/userOnboard-1';
 import userOnboard2 from './components/settings/userOnboard-2';
+import userProfile from './components/settings/userProfile';
 import bluetooth from './components/settings/bluetooth';
+import myDevices from './components/settings/myDevices';
 import pantryEmpty from './components/pantry/pantryEmpty';
 import pantryFull from './components/pantry/pantryFull';
 import shoppingList from './components/pantry/shoppingList';
@@ -141,7 +143,11 @@ function Pantry() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Pantry"
+        name="Pantry Full"
+        component={pantryFull}
+      />
+      <Stack.Screen
+        name="Shopping"
         component={shoppingList}
       />
     </Stack.Navigator>
@@ -164,6 +170,14 @@ function SettingsScreen() {
         component={userOnboard2}
         />
         <Stack.Screen
+        name="User Profile"
+        component={userProfile}
+        />
+        <Stack.Screen
+        name="My Devices"
+        component={myDevices}
+        />
+        <Stack.Screen
         name="Bluetooth Pairing"
         component={bluetooth}
         />
@@ -177,53 +191,13 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   return (
       <NavigationContainer>
+        {User()}
         {/* <Stack.Navigator>
         <Stack.Screen
-          name="Login"
-          component={login}
-          options={{
-            headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-        }}
-      />
-       <Stack.Screen
-          name="Sign Up"
-          component={signup}
-          options={{
-            headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-        }}
-      />
-    </Stack.Navigator> */}
-    {User()}
+        name="User Profile"
+        component={settingsLayout}
+        />
+      </Stack.Navigator> */}
       </NavigationContainer>
-    // <NavigationContainer>
-    //   <Tab.Navigator
-    //     activeColor="#f0edf6"
-    //     inactiveColor="black"
-    //     headerTitleStyle={{ height: 10 }}
-    //     barStyle={{ height: 50, backgroundColor: "#FF5800", alignContent: "center", alignItems: "center" }}
-    //   >
-    //     <Tab.Screen 
-    //       name="Home"
-    //       component={Home}
-    //       options={{
-    //         tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Home</Text>
-    //       }}
-    //     />
-    //     <Tab.Screen 
-    //       name="Pantry"
-    //       component={Pantry}
-    //       options={{
-    //         tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Pantry</Text>
-    //       }}
-    //     />
-    //     <Tab.Screen
-    //       name="Settings"
-    //       component={SettingsScreen}
-    //       options={{
-    //         tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Settings</Text>
-    //       }}
-    //     />
-    //   </Tab.Navigator>
-    // </NavigationContainer>
   );
 }

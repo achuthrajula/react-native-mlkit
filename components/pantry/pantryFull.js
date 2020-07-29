@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Button, Dialog, DialogDefaultActions  } from 'react-native-material-ui';
+import { useNavigation } from '@react-navigation/native';
 
-class pantryFull extends Component {
+export default function(props) {
+    const navigation = useNavigation();
+  
+    return <PantryFull {...props} navigation={navigation} />;
+  }
+
+class PantryFull extends Component {
     constructor() { 
         super(); 
         this.state = { 
@@ -12,7 +19,7 @@ class pantryFull extends Component {
           liquids: false,
           meats: false,
           dairy: false
-        }; 
+        };
     }
     toggleVegetables() {
         this.setState({
@@ -45,6 +52,7 @@ class pantryFull extends Component {
         })
     }
     render() {
+        const { navigation } = this.props;
         const vessel = [
             {title: "Vegetables", source: require('../../assets/pantry/categories/vegetable.png'), state: this.state.vegetables, toggle: () => this.toggleVegetables(),
                 dish: [
@@ -85,7 +93,7 @@ class pantryFull extends Component {
               primary 
               text="Pantry"
               style={{ text: { fontWeight: "bold" }, container: { marginBottom: 20, backgroundColor: "#FF5800", width: 200 } }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
+              onPress={() => navigation.navigate('Pantry Full')}
             />
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -94,7 +102,7 @@ class pantryFull extends Component {
               primary 
               text="Shopping List"
               style={{ text: { color: "#FF5800", fontWeight: "bold" }, container: { marginBottom: 20, backgroundColor: "white", width: 200 } }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
+              onPress={() => navigation.navigate('Shopping')}
             />
           </View>
         </View>
@@ -161,5 +169,3 @@ class pantryFull extends Component {
       </View>
     )}
   }
-
-export default pantryFull;

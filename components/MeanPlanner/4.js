@@ -79,6 +79,7 @@ function HomeScreen({ navigation }) {
                 </View>
             </View>
         </View>
+        <ScrollView>
         <View>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>Select Time</Text>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -91,7 +92,6 @@ function HomeScreen({ navigation }) {
                                 primary 
                                 text={time}
                                 style={{ text: {  }, container: { marginBottom: 20, backgroundColor: "#FF5800" } }}
-                                onPress={() => navigation.navigate('Meal Plan 3')}
                             />
                         </View>
                     )
@@ -109,6 +109,7 @@ function HomeScreen({ navigation }) {
             />
           </View>
         </View>
+        </ScrollView>
     </View>
     );
   }

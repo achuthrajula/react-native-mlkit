@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Button, Dialog, DialogDefaultActions } from 'react-native-material-ui';
 import { RadioButton } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
-class shoppingList extends Component {
+export default function(props) {
+    const navigation = useNavigation();
+  
+    return <ShoppingList {...props} navigation={navigation} />;
+  }
+
+class ShoppingList extends Component {
     constructor() { 
         super(); 
         this.state = { 
@@ -46,10 +53,7 @@ class shoppingList extends Component {
         })
     }
     render() {
-        let radio_props = [
-            {label: 'param1', value: 0 },
-            {label: 'param2', value: 1 }
-          ];
+        const { navigation } = this.props;
         const vessel = [
             {title: "Vegetables", source: require('../../assets/pantry/categories/vegetable.png'), state: this.state.vegetables, toggle: () => this.toggleVegetables(),
                 dish: [
@@ -90,7 +94,7 @@ class shoppingList extends Component {
               primary 
               text="Pantry"
               style={{ text: { color: "#FF5800", fontWeight: "bold" }, container: { marginBottom: 20, backgroundColor: "white", width: 200 } }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
+              onPress={() => navigation.navigate('Pantry Full')}
             />
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -99,7 +103,7 @@ class shoppingList extends Component {
               primary 
               text="Shopping List"
               style={{ text: { fontWeight: "bold" }, container: { marginBottom: 20, backgroundColor: "#FF5800", width: 200 } }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
+              onPress={() => navigation.navigate('Shopping')}
             />
           </View>
         </View>
@@ -173,7 +177,7 @@ class shoppingList extends Component {
               primary 
               text="Add Item"
               style={{ text: { color: "#FF5800", fontWeight: "bold" }, container: { marginBottom: 20, backgroundColor: "white", width: 200 } }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
+              onPress={() => alert('Soon')}
             />
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -182,12 +186,10 @@ class shoppingList extends Component {
               primary 
               text="Done"
               style={{ text: { fontWeight: "bold" }, container: { marginBottom: 20, backgroundColor: "#FF5800", width: 200 } }}
-              onPress={() => navigation.navigate('Meal Plan 3')}
+              onPress={() => alert('DOne')}
             />
           </View>
         </View>
       </View>
     )}
   }
-
-export default shoppingList;
