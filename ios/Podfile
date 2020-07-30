@@ -81,6 +81,8 @@ target 'AwesomeProject' do
 
   pod 'react-native-ble-plx', :path => '../node_modules/react-native-ble-plx'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'AwesomeProjectTests' do
     inherit! :complete
     # Pods for testing

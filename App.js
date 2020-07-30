@@ -196,13 +196,13 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   return (
       <NavigationContainer>
-        {/* {User()} */}
-        <Stack.Navigator>
+        {User()}
+        {/* <Stack.Navigator>
         <Stack.Screen
         name="New Recepie"
         component={newRecepie}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
       </NavigationContainer>
   );
 }
