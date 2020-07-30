@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import login from './components/User/login';
 import signup from './components/User/signup';
 import settingLayout from './components/settings/settingsLayout';
+import newRecepie from './components/settings/newRecepie';
 import userOnboard1 from './components/settings/userOnboard-1';
 import userOnboard2 from './components/settings/userOnboard-2';
 import userProfile from './components/settings/userProfile';
@@ -178,6 +179,10 @@ function SettingsScreen() {
         component={myDevices}
         />
         <Stack.Screen
+        name="New Recepie"
+        component={newRecepie}
+        />
+        <Stack.Screen
         name="Bluetooth Pairing"
         component={bluetooth}
         />
@@ -191,13 +196,13 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   return (
       <NavigationContainer>
-        {User()}
-        {/* <Stack.Navigator>
+        {/* {User()} */}
+        <Stack.Navigator>
         <Stack.Screen
-        name="User Profile"
-        component={settingsLayout}
+        name="New Recepie"
+        component={newRecepie}
         />
-      </Stack.Navigator> */}
+      </Stack.Navigator>
       </NavigationContainer>
   );
 }
