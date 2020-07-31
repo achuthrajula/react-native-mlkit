@@ -4,12 +4,12 @@ import { Button } from 'react-native-material-ui';
 
 function RikuControl({ navigation }) {
     const options = [
-        { name: 'Live View', source: require('../../assets/riku-control/bowl.png') },
-        { name: 'Induction', source: require('../../assets/riku-control/bowl.png') },
-        { name: 'Weighing Scale', source: require('../../assets/riku-control/scale.png') },
-        { name: 'Spice Box', source: require('../../assets/riku-control/spice.png') },
-        { name: 'Rice Cooker', source: require('../../assets/riku-control/bowl.png') },
-        { name: 'Pantry', source: require('../../assets/riku-control/bowl.png') },
+        { name: 'Live View', source: require('../../assets/riku-control/bowl.png'), press: () => {alert('soon')} },
+        { name: 'Induction', source: require('../../assets/riku-control/bowl.png'), press: () => {alert('soon')} },
+        { name: 'Weighing Scale', source: require('../../assets/riku-control/scale.png'), press: () => {alert('soon')} },
+        { name: 'Spice Box', source: require('../../assets/riku-control/spice.png'), press: () => {alert('soon')} },
+        { name: 'Rice Cooker', source: require('../../assets/riku-control/bowl.png'), press: () => {alert('soon')} },
+        { name: 'Pantry', source: require('../../assets/riku-control/bowl.png'), press: () => {navigation.navigate('Pantry Full')} },
     ]
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
@@ -27,7 +27,9 @@ function RikuControl({ navigation }) {
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
             {options.map(option => {
                 return(
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => option.press()}
+                    >
                         <View key={option.name} style={{ justifyContent: 'center', alignItems: 'center' ,width: 150, height: 150, margin: 5, borderWidth: 1, borderColor: 'black' }}>
                             <Image
                                 source={option.source}

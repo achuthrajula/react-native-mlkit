@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import login from './components/User/login';
 import signup from './components/User/signup';
 import settingLayout from './components/settings/settingsLayout';
+import recipe from './components/recipes/recipe';
 import rikuControl from'./components/settings/riku-control';
 import newRecepie from './components/settings/newRecepie';
 import userOnboard1 from './components/settings/userOnboard-1';
@@ -69,10 +70,10 @@ function h() {
           }}
         />
         <Tab.Screen 
-          name="Pantry"
-          component={Pantry}
+          name="Recipe"
+          component={Recipe}
           options={{
-            tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Pantry</Text>
+            tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Recipe</Text>
           }}
         />
         <Tab.Screen
@@ -141,16 +142,12 @@ function Home() {
   )
 }
 
-function Pantry() {
+function Recipe() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Pantry Full"
-        component={pantryFull}
-      />
-      <Stack.Screen
-        name="Shopping"
-        component={shoppingList}
+        name="Recipe"
+        component={recipe}
       />
     </Stack.Navigator>
   );
@@ -160,8 +157,16 @@ function SettingsScreen() {
   return (
       <Stack.Navigator>
         <Stack.Screen
-        name="Settings Layout"
-        component={settingsLayout}
+          name="Settings Layout"
+          component={settingsLayout}
+        />
+        <Stack.Screen
+          name="Pantry Full"
+          component={pantryFull}
+        />
+        <Stack.Screen
+          name="Shopping"
+          component={shoppingList}
         />
         <Stack.Screen
         name="Riku Control"
