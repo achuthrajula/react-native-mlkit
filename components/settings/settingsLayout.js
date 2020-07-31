@@ -17,7 +17,13 @@ function settingsLayout ({ navigation }) {
               titleStyle={{ color: 'black' }}
               buttonStyle={{ backgroundColor: "white", marginBottom: 20, borderWidth:1, borderColor: 'white', borderBottomColor: 'black', }}
               onPress={() => navigation.navigate('User Onboard 1') }
-          />  
+          /> 
+          <Button
+              title="Riku Control"
+              titleStyle={{ color: 'black' }}
+              buttonStyle={{ backgroundColor: "white", marginBottom: 20, borderWidth:1, borderColor: 'white', borderBottomColor: 'black', }}
+              onPress={() => navigation.navigate('Riku Control') }
+          /> 
           <Button
               title="Add New Recepie"
               titleStyle={{ color: 'black' }}

@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import login from './components/User/login';
 import signup from './components/User/signup';
 import settingLayout from './components/settings/settingsLayout';
+import rikuControl from'./components/settings/riku-control';
 import newRecepie from './components/settings/newRecepie';
 import userOnboard1 from './components/settings/userOnboard-1';
 import userOnboard2 from './components/settings/userOnboard-2';
@@ -26,7 +27,7 @@ import settingsLayout from './components/settings/settingsLayout';
 function User() {
   return(
     <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Login"
           component={login}
           options={{
@@ -39,7 +40,7 @@ function User() {
           options={{
             headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
         }}
-      />
+      /> */}
       <Stack.Screen
         name="h"
         component={h}
@@ -161,6 +162,10 @@ function SettingsScreen() {
         <Stack.Screen
         name="Settings Layout"
         component={settingsLayout}
+        />
+        <Stack.Screen
+        name="Riku Control"
+        component={rikuControl}
         />
         <Stack.Screen
         name="User Onboard 1"
