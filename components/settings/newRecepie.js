@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, ScrollView, Image, StyleSheet } from 'react-native';
-import { Button, Card } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button, Card} from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
-import { useScreens } from 'react-native-screens';
 
 
 function HomeScreen({ navigation }) {
+    const list = [
+        { key: 1, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 2, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 3, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 4, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 5, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 6, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 7, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 8, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 9, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 10, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 11, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+        { key: 12, ingredient: 'Lorem Ipsum', quantity: 'Lorem Ipsum' },
+    ]
     const [steps, toggleSteps] = useState({ first: true })
     const [instructions, inreaseInstructions] = useState([0])
     let instruction = instructions
@@ -20,7 +32,7 @@ function HomeScreen({ navigation }) {
     }
     const styles = StyleSheet.create({
         container: {
-          flex: 1,
+            height: 450,
           backgroundColor: '#fff',
           alignItems: 'center',
           justifyContent: 'center',
@@ -118,7 +130,9 @@ function HomeScreen({ navigation }) {
             {steps.second && <Card
                 containerStyle={{  }}
                 title='Enter the Ingredients'>
-                    <ScrollView>
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                    >
                         <React.Fragment>
                             <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1}}>
                                 <TextInput
@@ -134,7 +148,7 @@ function HomeScreen({ navigation }) {
                                 style={{width: 100, height: 100}} />*/}
                                 <Image
                                     source={{ uri: filePath.source.uri }}
-                                    style={{ width: 250, height: 250, margin: 50 }}
+                                    style={{ width: 250, height: 250, marginBottom: 50 }}
                                 />
                                 <Button 
                                     title="Choose File"
@@ -170,7 +184,7 @@ function HomeScreen({ navigation }) {
                             showsHorizontalScrollIndicator={false} 
                         >
                             {instruction.map( itr => {
-                                return (    <View key={itr} style={{ flexDirection: "column", height: 450 }}>
+                                return (    <View key={itr} style={{ flexDirection: "column", height: 500 }}>
                                     <View style={{ borderBottomColor: '#000000', justifyContent: 'center', borderBottomWidth: 1, width: 250}}>
                                         <View style={{ flexDirection: "row" }} >
                                             <View style={{ margin: 5 }}>
@@ -201,7 +215,7 @@ function HomeScreen({ navigation }) {
                                         />
                                         <Button 
                                             title="Choose File"
-                                            buttonStyle={{ backgroundColor: "#FF5800", width: 150 }}
+                                            buttonStyle={{ backgroundColor: "#FF5800", width: 150, marginTop: 50 }}
                                             onPress={chooseFile} />
                                         </View>
                                     </View>
@@ -247,20 +261,70 @@ function HomeScreen({ navigation }) {
                                 style={{width: 100, height: 100}} />*/}
                                 <Image
                                     source={{ uri: filePath.source.uri }}
-                                    style={{ width: 250, height: 250, margin: 50 }}
+                                    style={{ width: 250, height: 250, marginLeft: 50, marginRight: 50 }}
                                 />
                                 <Button 
                                     title="Choose File"
-                                    buttonStyle={{ backgroundColor: "#FF5800", width: 150 }}
+                                    buttonStyle={{ backgroundColor: "#FF5800", width: 150, marginTop: 50 }}
                                     onPress={chooseFile} />
                                 </View>
                             </View>
-                            <View style={{ marginTop: 30, flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
                                 <View style={{ width: 150, margin: 10 }} >
                                     <Button
                                         title="Back"
                                         buttonStyle={{ backgroundColor: "#FF5800" }}
                                         onPress={() => toggleSteps({ fourth: false, third: true })}
+                                    />
+                                </View>
+                                <View style={{ width: 150, margin: 10 }} >
+                                    <Button
+                                        title="Next"
+                                        buttonStyle={{ backgroundColor: "#FF5800" }}
+                                        onPress={() => toggleSteps({ fourth: false, fifth: true })}
+                                    />
+                                </View>
+                            </View>
+                    </React.Fragment>
+                </ScrollView>
+            </Card>}
+            {steps.fifth && <Card
+                containerStyle={{  }}
+                title='Recipe Summary'>
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                    >
+                        <React.Fragment>
+                            <View style={styles.container}>
+                                <View style={styles.container}>
+                                {/*<Image 
+                                source={{ uri: this.state.filePath.path}} 
+                                style={{width: 100, height: 100}} />*/}
+                                <Image
+                                    source={{ uri: filePath.source.uri }}
+                                    style={{ width: 250, height: 250, margin: 50 }}
+                                />
+                                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Ingredients Details</Text>
+                                <View style={{ height: 150, margin: 10}}>
+
+                                <ScrollView
+                                    showsVerticalScrollIndicator={false}
+                                >
+                                {list.map(item => {
+                                    return(
+                                    <Text style={{ margin: 5 }} key={item.key}>{'\u2B24'} {item.ingredient} {item.quantity}</Text>
+                                    )
+                                })}
+                                </ScrollView>
+                                </View>
+                                </View>
+                            </View>
+                            <View style={{ marginTop: 50, flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
+                                <View style={{ width: 150, margin: 10 }} >
+                                    <Button
+                                        title="Back"
+                                        buttonStyle={{ backgroundColor: "#FF5800" }}
+                                        onPress={() => toggleSteps({ fifth: false, fourth: true })}
                                     />
                                 </View>
                                 <View style={{ width: 150, margin: 10 }} >
