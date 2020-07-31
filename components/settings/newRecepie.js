@@ -156,7 +156,7 @@ function HomeScreen({ navigation }) {
                                     onPress={chooseFile} />
                                 </View>
                             </View>
-                            <View style={{ marginTop: 30, flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
                                 <View style={{ width: 150, margin: 10 }} >
                                     <Button
                                         title="Back"
@@ -221,12 +221,12 @@ function HomeScreen({ navigation }) {
                                     </View>
                                 </View>)})}
                         </ScrollView>
-                        <View style={{ marginTop: 30, flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
                             <View style={{ width: 150, margin: 10 }} >
                                 <Button
                                     title="Back"
                                     buttonStyle={{ backgroundColor: "#FF5800" }}
-                                    onPress={() => toggleSteps({ first: true, second: false })}
+                                    onPress={() => toggleSteps({ second: true, third: false })}
                                 />
                             </View>
                             <View style={{ width: 150, margin: 10 }} >
@@ -242,9 +242,9 @@ function HomeScreen({ navigation }) {
             {steps.fourth && <Card
                 containerStyle={{  }}
                 title='Final Dish'>
-                    <ScrollView
+                    {/* <ScrollView
                         showsVerticalScrollIndicator={false}
-                    >
+                    > */}
                         <React.Fragment>
                             <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1}}>
                                 <Text style={{ marginBottom: 10 }}>Final Thoughts</Text>
@@ -256,12 +256,9 @@ function HomeScreen({ navigation }) {
                             </View>
                             <View style={styles.container}>
                                 <View style={styles.container}>
-                                {/*<Image 
-                                source={{ uri: this.state.filePath.path}} 
-                                style={{width: 100, height: 100}} />*/}
                                 <Image
                                     source={{ uri: filePath.source.uri }}
-                                    style={{ width: 250, height: 250, marginLeft: 50, marginRight: 50 }}
+                                    style={{ width: 200, height: 200, marginLeft: 50, marginRight: 50 }}
                                 />
                                 <Button 
                                     title="Choose File"
@@ -269,7 +266,7 @@ function HomeScreen({ navigation }) {
                                     onPress={chooseFile} />
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginBottom: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', marginBottom: 50, justifyContent: 'center', alignItems: 'center' }}>
                                 <View style={{ width: 150, margin: 10 }} >
                                     <Button
                                         title="Back"
@@ -286,14 +283,14 @@ function HomeScreen({ navigation }) {
                                 </View>
                             </View>
                     </React.Fragment>
-                </ScrollView>
+                {/* </ScrollView> */}
             </Card>}
             {steps.fifth && <Card
                 containerStyle={{  }}
                 title='Recipe Summary'>
-                    <ScrollView
+                    {/* <ScrollView
                         showsVerticalScrollIndicator={false}
-                    >
+                    > */}
                         <React.Fragment>
                             <View style={styles.container}>
                                 <View style={styles.container}>
@@ -302,7 +299,7 @@ function HomeScreen({ navigation }) {
                                 style={{width: 100, height: 100}} />*/}
                                 <Image
                                     source={{ uri: filePath.source.uri }}
-                                    style={{ width: 250, height: 250, margin: 50 }}
+                                    style={{ width: 200, height: 200, margin: 50 }}
                                 />
                                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Ingredients Details</Text>
                                 <View style={{ height: 150, margin: 10}}>
@@ -336,7 +333,7 @@ function HomeScreen({ navigation }) {
                                 </View>
                             </View>
                     </React.Fragment>
-                </ScrollView>
+                {/* </ScrollView> */}
             </Card>}
         </View>
       </View>
