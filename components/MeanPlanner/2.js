@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { Button } from 'react-native-material-ui';
 import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { DialogDefaultActions, Dialog } from 'react-native-material-ui';
+import { Dialog } from 'react-native-material-ui';
 import { RadioButton } from 'react-native-paper';
 import Modal from 'react-native-modal';
+import { cos } from 'react-native-reanimated';
 
 function HomeScreen({ navigation }) {
     const [options, toggleOptions] = useState(false)
@@ -20,20 +21,43 @@ function HomeScreen({ navigation }) {
     const [dinner, setDinner] = React.useState(false);
     const [schedule, updateSchedule] = useState({})
     const [meals, updateMeals] = useState()
-    // let meal = schedule.some(obj => obj.hasOwnProperty(date))
+    const scheduleGenerator = () => {
+        let array = ['breakfast','lunch','dinner']
+        let size = [1,2,3]
+        const n = Math.floor(Math.random() * size.length+1);
+        let random = array.sort(() => .5 - Math.random()).slice(0,n)
+        return random
+    }
+    const scheduleWeek = () => {
+        let curr = new Date(); // today's date is: 19th April 2020
+        let week = []
+        let weekSchedule = {}
+        for (let i = 1; i <= 7; i++) {
+            let dow = curr.getDay();
+            if (!dow) dow = 7;
+            let first = curr.getDate() - dow + i;
+            let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
+            week.push(day);
+            // weekSchedule[day] = ''
+        }
+        week.map((day) => {
+            weekSchedule[day] = {
+                'breakfast': scheduleGenerator(),
+                'lunch': scheduleGenerator(),
+                'dinner': scheduleGenerator()
+            }
+        })
+        let prevSchedule = schedule
+        let newSchedule = Object.assign(prevSchedule, weekSchedule)
+        console.log(newSchedule)
+    }
     useEffect(() => {
         let prevSchedule = schedule;
         if (!(date && prevSchedule.hasOwnProperty(date))) prevSchedule[date] = {}
 
-        // if(prevSchedule == undefined) alert('select Date')
-        // else {
             prevSchedule[date][currentMeal] = meals
-        // let schedule2 = Object();
-        // schedule2[date] = meals
-        // prevSchedule.push(schedule2)
-        updateSchedule({...prevSchedule})
-        console.log(schedule)
-        // } 
+            updateSchedule({...prevSchedule})
+            console.log(schedule)
         
     }, [meals]); //
     const updateToSelectedDate = (data) => {
@@ -90,8 +114,19 @@ function HomeScreen({ navigation }) {
                 onDayPress={(day) => updateToSelectedDate(day)}
             />
         <View style={{ backgroundColor: "white", marginBottom: 100 }}> 
-            <View>
-                <Text style={{ color: "#FF5800", fontSize: 20 }}>Meals</Text>
+            <View style={{ flexDirection: "row" }}>
+                <View style={{ margin: 10 }}>
+                    <Text style={{ color: "#FF5800", fontSize: 20, fontWeight: "bold" }}>Meals</Text>
+                </View>
+                <View style={{ marginLeft: 'auto' }}>
+                    <Button 
+                        raised
+                        primary 
+                        text="Schedule for a week"
+                        style={{ text: {  }, container: { marginBottom: 20, backgroundColor: "#FF5800" } }}
+                        onPress={() => scheduleWeek()}
+                    />
+                </View>
             </View>
             <ScrollView>
                 <View style={{ flex: 1, marginBottom: 300 }}>

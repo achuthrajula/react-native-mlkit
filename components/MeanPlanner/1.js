@@ -8,7 +8,6 @@ function HomeScreen({ navigation }) {
   const [toolTip1, toggleToolTip1] = useState(true);
   const [toolTip2, toggleToolTip2] = useState(false);
   const [status, setStatus] = useState();
-  console.log('status',status)
   const getData = async () => {
     const value = await AsyncStorage.getItem('first-visit')
     try {
@@ -24,9 +23,6 @@ function HomeScreen({ navigation }) {
     }
   }
   getData()
-  if (status == true) {
-    
-  }
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
         {status &&  <View style={{flex: 1, flexDirection: 'column'}}>
@@ -37,10 +33,12 @@ function HomeScreen({ navigation }) {
               placement="top"
               onClose={() => {toggleToolTip1(false); toggleToolTip2(true)}}
             >
-              <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
-                <Image
-                source={require('../../assets/plate.png')}
-              />
+              <View style={{ flexDirection: 'row', height: 150, backgroundColor: "#FFF1E8", margin: 20 }}>
+                  <View style={{ justifyContent: 'center', alignItems: 'center',  width: 100 }}>
+                      <Image
+                      source={require('../../assets/plate.png')}
+                  />
+                  </View>
               </View>
             </Tooltip>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
