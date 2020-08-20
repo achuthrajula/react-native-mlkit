@@ -1,4 +1,5 @@
 import * as React from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -26,6 +27,23 @@ import HomeScreen6 from './components/MeanPlanner/6.js';
 import settingsLayout from './components/settings/settingsLayout';
 
 function User() {
+  const storeData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('first-visit')
+
+      if(value !== 'false') {
+        // value previously stored
+        // await AsyncStorage.setItem('first-visit', 'false')
+      }
+      else {
+        await AsyncStorage.setItem('first-visit', 'true')
+      }
+    } catch (e) {
+      // saving error
+      console.log(e)
+    }
+  }
+  storeData()
   return(
     <Stack.Navigator>
         {/* <Stack.Screen
