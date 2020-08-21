@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from 'react-native-material-ui';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -65,7 +66,7 @@ function User() {
         component={h}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
+          headerShown: false
         }}
       />
     </Stack.Navigator>
@@ -128,8 +129,15 @@ function Home() {
         name="Meal Plan 3"
         component={HomeScreen3}
         options={{
+          headerTitle: 'Screen 3',
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
+          headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              text="Info"
+              color="black"
+            />
+          )
         }}
       />
       <Stack.Screen

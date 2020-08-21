@@ -5,9 +5,9 @@ import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Dialog } from 'react-native-material-ui';
 import { RadioButton } from 'react-native-paper';
 import Modal from 'react-native-modal';
-import { cos } from 'react-native-reanimated';
 
 function HomeScreen({ navigation }) {
+    const [futureScheduleModal, toggleFutureScheduleModal] = useState(false)
     const [options, toggleOptions] = useState(false)
     const [options2, toggleOptions2] = useState(false)
     const [options3, toggleOptions3] = useState(false)
@@ -28,8 +28,8 @@ function HomeScreen({ navigation }) {
         let random = array.sort(() => .5 - Math.random()).slice(0,n)
         return random
     }
-    const scheduleWeek = () => {
-        let curr = new Date(); // today's date is: 19th April 2020
+    const scheduleWeek = (future) => {
+        let curr = new Date(future); // today's date is: 19th April 2020
         let week = []
         let weekSchedule = {}
         for (let i = 1; i <= 7; i++) {
@@ -47,9 +47,7 @@ function HomeScreen({ navigation }) {
                 'dinner': scheduleGenerator()
             }
         })
-        let prevSchedule = schedule
-        let newSchedule = Object.assign(prevSchedule, weekSchedule)
-        console.log(newSchedule)
+        Object.assign(schedule, weekSchedule)
     }
     useEffect(() => {
         let prevSchedule = schedule;
@@ -60,10 +58,49 @@ function HomeScreen({ navigation }) {
             console.log(schedule)
         
     }, [meals]); //
+    const thisWeek = () => {
+        toggleFutureScheduleModal(false);
+        // let date = new Date().toISOString().slice(0,10);
+        let curr = new Date();
+        let start = curr.getDay();
+        if (start == 0) start = 7
+        let week = []
+        let weekSchedule = {}
+        for (let i = start; i <= 7; i++) {
+            let dow = curr.getDay();
+            if (!dow) dow = 7;
+            let first = curr.getDate() - dow + i;
+            let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
+            week.push(day);
+            // weekSchedule[day] = ''
+        }
+        week.map((day) => {
+            weekSchedule[day] = {
+                'breakfast': scheduleGenerator(),
+                'lunch': scheduleGenerator(),
+                'dinner': scheduleGenerator()
+            }
+        })
+        console.log('this Week', week)
+        // console.log('this Week schedule', weekSchedule)
+        Object.assign(schedule, weekSchedule)
+        // console.log('log',newSchedule)
+    }
+    const nextWeek = () => {
+        toggleFutureScheduleModal(false);
+        let curr = new Date();
+        let first = curr.getDate() + 7;
+        let date = new Date(curr.setDate(first)).toISOString().slice(0,10)
+        scheduleWeek(date)
+    }
+    const weekAfterTheNext = () => {
+        toggleFutureScheduleModal(false);
+        let curr = new Date();
+        let first = curr.getDate() + 7*2;
+        let date = new Date(curr.setDate(first)).toISOString().slice(0,10)
+        scheduleWeek(date)
+    }
     const updateToSelectedDate = (data) => {
-        // let prevSchedule = schedule;
-        // prevSchedule[date] = {}
-        // updateSchedule({...prevSchedule})
         updateDate(data.dateString)
         console.log(schedule)
     }
@@ -124,8 +161,48 @@ function HomeScreen({ navigation }) {
                         primary 
                         text="Schedule for a week"
                         style={{ text: {  }, container: { marginBottom: 20, backgroundColor: "#FF5800" } }}
-                        onPress={() => scheduleWeek()}
+                        onPress={() => toggleFutureScheduleModal(true)}
                     />
+                    <Modal isVisible={futureScheduleModal} style={{ backgroundColor: 'white'}}>
+                            <View style={{ margin: 50 }}>
+                                <View style={{ flexDirection: 'row', height: 60 }}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text>This Week</Text>
+                                    </View>
+                                    <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                                        <RadioButton
+                                            value="breakfast"
+                                            status={ breakfast == true ? 'checked' : 'unchecked' }
+                                            onPress={() => thisWeek()}
+                                        />
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', height: 60 }}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text>Next Week</Text>
+                                    </View>
+                                    <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                                        <RadioButton
+                                            value="lunch"
+                                            status={ lunch == true ? 'checked' : 'unchecked' }
+                                            onPress={() => nextWeek()}
+                                        />
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', height: 60 }}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <Text>The week after next</Text>
+                                    </View>
+                                    <View style={{justifyContent: 'center', alignItems: 'center' }}>
+                                        <RadioButton
+                                            value="dinner"
+                                            status={ dinner == true ? 'checked' : 'unchecked' }
+                                            onPress={() => weekAfterTheNext()}
+                                        />
+                                    </View>
+                                </View>
+                            </View>
+                        </Modal>
                 </View>
             </View>
             <ScrollView>

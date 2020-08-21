@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Button } from 'react-native-material-ui';
 import Tooltip from 'react-native-walkthrough-tooltip';
-import { Text, View, Image, Button, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 function HomeScreen({ navigation }) {
@@ -33,6 +34,13 @@ function HomeScreen({ navigation }) {
         }
       }
       getData()
+    //   React.useLayoutEffect(() => {
+    //     navigation.setOptions({
+    //       headerRight: () => (
+    //         <Button onPress={() => alert('Working')} text="Update count" />
+    //       ),
+    //     });
+    //   }, [navigation]);
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
           {status && <View style={{flex: 1, flexDirection: 'column'}}>
