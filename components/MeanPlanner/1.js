@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TouchableHighlight } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Text, View, Image,TouchableOpacity, StyleSheet } from 'react-native';
 import { Button } from 'react-native-material-ui';
 import Tooltip from 'react-native-walkthrough-tooltip';
 import AsyncStorage from '@react-native-community/async-storage';
+import Clipboard from '@react-native-community/clipboard'
 
 function HomeScreen({ navigation }) {
   const [toolTip1, toggleToolTip1] = useState(true);
   const [toolTip2, toggleToolTip2] = useState(false);
   const [status, setStatus] = useState();
+  const [copiedText, setCopiedText] = useState('')
+  const copyToClipboard = () => {
+    Clipboard.setString('hello world')
+  }
+  const fetchCopiedText = async () => {
+    const text = await Clipboard.getString()
+    setCopiedText(text)
+  }
   const getData = async () => {
     const value = await AsyncStorage.getItem('first-visit')
     try {
@@ -22,7 +31,19 @@ function HomeScreen({ navigation }) {
       return value
     }
   }
-  getData()
+  getData();
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    copiedText: {
+      marginTop: 10,
+      color: 'red'
+    }
+  })
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
         {status &&  <View style={{flex: 1, flexDirection: 'column'}}>
@@ -62,6 +83,19 @@ function HomeScreen({ navigation }) {
             />
             </Tooltip>
           </View>
+          <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            {/* <TouchableOpacity onPress={copyToClipboard}>
+              <Text>Click here to copy to Clipboard</Text>
+            </TouchableOpacity> */}
+            <TouchableOpacity onPress={fetchCopiedText}>
+              <Text>View copied text</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.copiedText}>{copiedText}</Text>
+          </View>
+
+        </SafeAreaView>
         </View>
       </View>}
       {!status &&  <View style={{flex: 1, flexDirection: 'column'}}>
