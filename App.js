@@ -9,7 +9,7 @@ import login from './components/User/login';
 import signup from './components/User/signup';
 import settingLayout from './components/settings/settingsLayout';
 import recipe from './components/recipes/recipe';
-import rikuControl from'./components/settings/riku-control';
+import rikuControl from './components/settings/riku-control';
 import newRecepie from './components/settings/newRecepie';
 import userOnboard1 from './components/settings/userOnboard-1';
 import userOnboard2 from './components/settings/userOnboard-2';
@@ -30,24 +30,23 @@ import settingsLayout from './components/settings/settingsLayout';
 function User() {
   const storeData = async () => {
     try {
-      const value = await AsyncStorage.getItem('first-visit')
+      const value = await AsyncStorage.getItem('first-visit');
 
-      if(value !== 'false') {
+      if (value !== 'false') {
         // value previously stored
         // await AsyncStorage.setItem('first-visit', 'false')
-      }
-      else {
-        await AsyncStorage.setItem('first-visit', 'true')
+      } else {
+        await AsyncStorage.setItem('first-visit', 'true');
       }
     } catch (e) {
       // saving error
-      console.log(e)
+      console.log(e);
     }
-  }
-  storeData()
-  return(
+  };
+  storeData();
+  return (
     <Stack.Navigator>
-        {/* <Stack.Screen
+      {/* <Stack.Screen
           name="Login"
           component={login}
           options={{
@@ -66,55 +65,65 @@ function User() {
         component={h}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          headerShown: false
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
-  )
+  );
 }
 
 function h() {
-  return(
+  return (
     <Tab.Navigator
-        activeColor="#f0edf6"
-        inactiveColor="black"
-        headerTitleStyle={{ height: 10 }}
-        barStyle={{ height: 50, backgroundColor: "#FF5800", alignContent: "center", alignItems: "center" }}
-      >
-        <Tab.Screen 
-          name="Home"
-          component={Home}
-          options={{
-            tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Home</Text>
-          }}
-        />
-        <Tab.Screen 
-          name="Recipe"
-          component={Recipe}
-          options={{
-            tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Recipe</Text>
-          }}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={SettingsScreen}
-          options={{
-            tabBarLabel: <Text style={{ fontSize: 15, fontWeight: "bold" }}>Settings</Text>
-          }}
-        />
-      </Tab.Navigator>
-  )
+      activeColor="#f0edf6"
+      inactiveColor="black"
+      headerTitleStyle={{ height: 10 }}
+      barStyle={{
+        height: 50,
+        backgroundColor: '#FF5800',
+        alignContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: (
+            <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Home</Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Recipe"
+        component={Recipe}
+        options={{
+          tabBarLabel: (
+            <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Recipe</Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: (
+            <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Settings</Text>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
 
 function Home() {
-  return(
+  return (
     <Stack.Navigator>
       <Stack.Screen
         name="Meal Plan 1"
         component={HomeScreen1}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
         }}
       />
       <Stack.Screen
@@ -122,7 +131,6 @@ function Home() {
         component={HomeScreen2}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
         }}
       />
       <Stack.Screen
@@ -137,7 +145,7 @@ function Home() {
               text="Info"
               color="black"
             />
-          )
+          ),
         }}
       />
       <Stack.Screen
@@ -145,7 +153,6 @@ function Home() {
         component={HomeScreen4}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
         }}
       />
       <Stack.Screen
@@ -153,7 +160,6 @@ function Home() {
         component={HomeScreen5}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
         }}
       />
       <Stack.Screen
@@ -161,68 +167,34 @@ function Home() {
         component={HomeScreen6}
         options={{
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
-          
         }}
       />
     </Stack.Navigator>
-  )
+  );
 }
 
 function Recipe() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="Recipe"
-        component={recipe}
-      />
+      <Stack.Screen name="Recipe" component={recipe} />
     </Stack.Navigator>
   );
 }
 
 function SettingsScreen() {
   return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Settings Layout"
-          component={settingsLayout}
-        />
-        <Stack.Screen
-          name="Pantry Full"
-          component={pantryFull}
-        />
-        <Stack.Screen
-          name="Shopping"
-          component={shoppingList}
-        />
-        <Stack.Screen
-        name="Riku Control"
-        component={rikuControl}
-        />
-        <Stack.Screen
-        name="User Onboard 1"
-        component={userOnboard1}
-        />
-        <Stack.Screen
-        name="User Onboard 2"
-        component={userOnboard2}
-        />
-        <Stack.Screen
-        name="User Profile"
-        component={userProfile}
-        />
-        <Stack.Screen
-        name="My Devices"
-        component={myDevices}
-        />
-        <Stack.Screen
-        name="New Recepie"
-        component={newRecepie}
-        />
-        <Stack.Screen
-        name="Bluetooth Pairing"
-        component={bluetooth}
-        />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Settings Layout" component={settingsLayout} />
+      <Stack.Screen name="Pantry Full" component={pantryFull} />
+      <Stack.Screen name="Shopping" component={shoppingList} />
+      <Stack.Screen name="Riku Control" component={rikuControl} />
+      <Stack.Screen name="User Onboard 1" component={userOnboard1} />
+      <Stack.Screen name="User Onboard 2" component={userOnboard2} />
+      <Stack.Screen name="User Profile" component={userProfile} />
+      <Stack.Screen name="My Devices" component={myDevices} />
+      <Stack.Screen name="New Recepie" component={newRecepie} />
+      <Stack.Screen name="Bluetooth Pairing" component={bluetooth} />
+    </Stack.Navigator>
   );
 }
 
@@ -231,14 +203,14 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
-      <NavigationContainer>
-        {User()}
-        {/* <Stack.Navigator>
+    <NavigationContainer>
+      {User()}
+      {/* <Stack.Navigator>
         <Stack.Screen
         name="New Recepie"
         component={newRecepie}
         />
       </Stack.Navigator> */}
-      </NavigationContainer>
+    </NavigationContainer>
   );
 }
