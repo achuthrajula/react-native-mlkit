@@ -42,7 +42,7 @@ function HomeScreen({ navigation }) {
       week.push(day);
       // weekSchedule[day] = ''
     }
-    week.map((day) => {
+    week.forEach((day) => {
       weekSchedule[day] = {
         breakfast: scheduleGenerator(),
         lunch: scheduleGenerator(),
@@ -53,6 +53,7 @@ function HomeScreen({ navigation }) {
   };
   useEffect(() => {
     const prevSchedule = schedule;
+    // eslint-disable-next-line no-prototype-builtins
     if (!(date && prevSchedule.hasOwnProperty(date))) prevSchedule[date] = {};
 
     prevSchedule[date][currentMeal] = meals;
@@ -64,7 +65,7 @@ function HomeScreen({ navigation }) {
     // let date = new Date().toISOString().slice(0,10);
     const curr = new Date();
     let start = curr.getDay();
-    if (start == 0) start = 7;
+    if (start === 0) start = 7;
     const week = [];
     const weekSchedule = {};
     for (let i = start; i <= 7; i++) {
@@ -91,6 +92,7 @@ function HomeScreen({ navigation }) {
     toggleFutureScheduleModal(false);
     const curr = new Date();
     const first = curr.getDate() + 7;
+    // eslint-disable-next-line no-shadow
     const date = new Date(curr.setDate(first)).toISOString().slice(0, 10);
     scheduleWeek(date);
   };
@@ -98,6 +100,7 @@ function HomeScreen({ navigation }) {
     toggleFutureScheduleModal(false);
     const curr = new Date();
     const first = curr.getDate() + 7 * 2;
+    // eslint-disable-next-line no-shadow
     const date = new Date(curr.setDate(first)).toISOString().slice(0, 10);
     scheduleWeek(date);
   };
@@ -109,9 +112,9 @@ function HomeScreen({ navigation }) {
     console.log('breakfast');
     const totalList = Object();
     const list = [];
-    if (breakfast == true) list.push('Breakfast');
-    if (lunch == true) list.push('Lunch');
-    if (dinner == true) list.push('Dinner');
+    if (breakfast === true) list.push('Breakfast');
+    if (lunch === true) list.push('Lunch');
+    if (dinner === true) list.push('Dinner');
     totalList.breakfast = list;
     updateCurrentMeal('breakfast');
     updateMeals(list);
@@ -121,9 +124,9 @@ function HomeScreen({ navigation }) {
     console.log('lunch');
     const totalList = Object();
     const list = [];
-    if (breakfast == true) list.push('Breakfast');
-    if (lunch == true) list.push('Lunch');
-    if (dinner == true) list.push('Dinner');
+    if (breakfast === true) list.push('Breakfast');
+    if (lunch === true) list.push('Lunch');
+    if (dinner === true) list.push('Dinner');
     totalList.lunch = list;
     updateCurrentMeal('lunch');
     updateMeals(list);
@@ -141,17 +144,6 @@ function HomeScreen({ navigation }) {
     updateMeals(list);
     toggleOptions3(false);
   };
-  const vessel = [
-    {
-      title: 'Breakfast', backgroundColor: '#FFE50061', source: require('../../assets/breakfast.png'), status: () => updateBreakfastSchedule(!breakfastSchedule)
-    },
-    {
-      title: 'Lunch', backgroundColor: '#FFEB3BB3', source: require('../../assets/lunch.png'), status: () => updateLunchSchedule(!lunchSchedule)
-    },
-    {
-      title: 'Dinner', backgroundColor: '#FFA45ECC', source: require('../../assets/dinner.png'), status: () => updateDinnerSchedule(!dinnerSchedule)
-    }/* , {title: "Snacks", backgroundColor: "#FFB38BCC", source: require("../../assets/snacks.png")}, {title: "Salads", backgroundColor: "#CAFF95", source: require("../../assets/salads.png")} */
-  ];
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <Calendar
@@ -178,10 +170,10 @@ function HomeScreen({ navigation }) {
                   </View>
                   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <RadioButton
-                        value="breakfast"
-                        status={breakfast == true ? 'checked' : 'unchecked'}
-                        onPress={() => thisWeek()}
-                      />
+                      value="breakfast"
+                      status={breakfast == true ? 'checked' : 'unchecked'}
+                      onPress={() => thisWeek()}
+                    />
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
@@ -190,10 +182,10 @@ function HomeScreen({ navigation }) {
                   </View>
                   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <RadioButton
-                        value="lunch"
-                        status={lunch == true ? 'checked' : 'unchecked'}
-                        onPress={() => nextWeek()}
-                      />
+                      value="lunch"
+                      status={lunch == true ? 'checked' : 'unchecked'}
+                      onPress={() => nextWeek()}
+                    />
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
@@ -202,10 +194,10 @@ function HomeScreen({ navigation }) {
                   </View>
                   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <RadioButton
-                        value="dinner"
-                        status={dinner == true ? 'checked' : 'unchecked'}
-                        onPress={() => weekAfterTheNext()}
-                      />
+                      value="dinner"
+                      status={dinner == true ? 'checked' : 'unchecked'}
+                      onPress={() => weekAfterTheNext()}
+                    />
                   </View>
                 </View>
               </View>
@@ -231,62 +223,62 @@ function HomeScreen({ navigation }) {
                   <TouchableOpacity onPress={() => toggleOptions(true)}>
                     {/* <TouchableOpacity onPress={() =>  navigation.navigate('Meal Plan 4')}> */}
                     <Image
-                        source={require('../../assets/add.png')}
-                      />
+                      source={require('../../assets/add.png')}
+                    />
                     <Modal isVisible={options} style={{ backgroundColor: 'white' }} coverScreen>
-                        <View style={{ margin: 50 }}>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Breakfast</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="breakfast"
-                                    status={breakfast == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setBreakfast(!breakfast)}
-                                  />
-                              </View>
-                          </View>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Lunch</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="lunch"
-                                    status={lunch == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setLunch(!lunch)}
-                                  />
-                              </View>
-                          </View>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Dinner</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="dinner"
-                                    status={dinner == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setDinner(!dinner)}
-                                  />
-                              </View>
+                      <View style={{ margin: 50 }}>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Breakfast</Text>
                           </View>
                           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Button
-                                text="Done"
-                                onPress={() => addToBreakfast()}
-                                style={{ text: { color: 'white' }, container: { width: '50%', marginBottom: 20, backgroundColor: '#FF5800' } }}
-                              />
+                            <RadioButton
+                              value="breakfast"
+                              status={breakfast == true ? 'checked' : 'unchecked'}
+                              onPress={() => setBreakfast(!breakfast)}
+                            />
                           </View>
                         </View>
-                      </Modal>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Lunch</Text>
+                          </View>
+                          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RadioButton
+                              value="lunch"
+                              status={lunch == true ? 'checked' : 'unchecked'}
+                              onPress={() => setLunch(!lunch)}
+                            />
+                          </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Dinner</Text>
+                          </View>
+                          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RadioButton
+                              value="dinner"
+                              status={dinner == true ? 'checked' : 'unchecked'}
+                              onPress={() => setDinner(!dinner)}
+                            />
+                          </View>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                          <Button
+                            text="Done"
+                            onPress={() => addToBreakfast()}
+                            style={{ text: { color: 'white' }, container: { width: '50%', marginBottom: 20, backgroundColor: '#FF5800' } }}
+                          />
+                        </View>
+                      </View>
+                    </Modal>
                   </TouchableOpacity>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <TouchableOpacity onPress={() => updateBreakfastSchedule(!breakfastSchedule)}>
                     <Image
-                        source={require('../../assets/drop.png')}
-                      />
+                      source={require('../../assets/drop.png')}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -298,21 +290,21 @@ function HomeScreen({ navigation }) {
                       <View style={{ flexDirection: 'row', height: 60 }}>
                         <View style={{ flexDirection: 'column', height: 60 }}>
                           {!(date && schedule.hasOwnProperty(date))
-                                ? <Text>No schedule</Text>
-                                : (schedule[date].hasOwnProperty('breakfast')
-                                  ? schedule[date].breakfast.map((item) => (
-                                    <View key={item} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>
-                    {'\u2B24'}
-                    {' '}
-                    <Text style={{ fontSize: 15 }}>
-                                        {' '}
-                                        {item}
-                                      </Text>
-                  </Text>
-                              </View>
-                                  ))
-                                  : <Text>No schedule</Text>)}
+                            ? <Text>No schedule</Text>
+                            : (schedule[date].hasOwnProperty('breakfast')
+                              ? schedule[date].breakfast.map((item) => (
+                                <View key={item} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                  <Text>
+                                    {'\u2B24'}
+                                    {' '}
+                                    <Text style={{ fontSize: 15 }}>
+                                      {' '}
+                                      {item}
+                                    </Text>
+                                  </Text>
+                                </View>
+                              ))
+                              : <Text>No schedule</Text>)}
                         </View>
                       </View>
                     </Dialog.Content>
@@ -336,62 +328,62 @@ function HomeScreen({ navigation }) {
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <TouchableOpacity onPress={() => toggleOptions2(true)}>
                     <Image
-                        source={require('../../assets/add.png')}
-                      />
+                      source={require('../../assets/add.png')}
+                    />
                     <Modal isVisible={options2} style={{ backgroundColor: 'pink' }} coverScreen>
-                        <View style={{ margin: 50 }}>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Breakfast</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="breakfast"
-                                    status={breakfast == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setBreakfast(!breakfast)}
-                                  />
-                              </View>
-                          </View>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Lunch</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="lunch"
-                                    status={lunch == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setLunch(!lunch)}
-                                  />
-                              </View>
-                          </View>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Dinner</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="dinner"
-                                    status={dinner == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setDinner(!dinner)}
-                                  />
-                              </View>
+                      <View style={{ margin: 50 }}>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Breakfast</Text>
                           </View>
                           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Button
-                                text="Done"
-                                onPress={() => addToLunch()}
-                                style={{ text: { color: 'white' }, container: { width: '50%', marginBottom: 20, backgroundColor: '#FF5800' } }}
-                              />
+                            <RadioButton
+                              value="breakfast"
+                              status={breakfast == true ? 'checked' : 'unchecked'}
+                              onPress={() => setBreakfast(!breakfast)}
+                            />
                           </View>
                         </View>
-                      </Modal>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Lunch</Text>
+                          </View>
+                          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RadioButton
+                              value="lunch"
+                              status={lunch == true ? 'checked' : 'unchecked'}
+                              onPress={() => setLunch(!lunch)}
+                            />
+                          </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Dinner</Text>
+                          </View>
+                          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RadioButton
+                              value="dinner"
+                              status={dinner == true ? 'checked' : 'unchecked'}
+                              onPress={() => setDinner(!dinner)}
+                            />
+                          </View>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                          <Button
+                            text="Done"
+                            onPress={() => addToLunch()}
+                            style={{ text: { color: 'white' }, container: { width: '50%', marginBottom: 20, backgroundColor: '#FF5800' } }}
+                          />
+                        </View>
+                      </View>
+                    </Modal>
                   </TouchableOpacity>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <TouchableOpacity onPress={() => updateLunchSchedule(!lunchSchedule)}>
                     <Image
-                        source={require('../../assets/drop.png')}
-                      />
+                      source={require('../../assets/drop.png')}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -403,21 +395,21 @@ function HomeScreen({ navigation }) {
                       <View style={{ flexDirection: 'row', height: 60 }}>
                         <View style={{ flexDirection: 'column', height: 60 }}>
                           {!(date && schedule.hasOwnProperty(date))
-                                ? <Text>No schedule</Text>
-                                : (schedule[date].hasOwnProperty('lunch')
-                                  ? schedule[date].lunch.map((item) => (
-                                    <View key={item} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text>
-                    {'\u2B24'}
-                    {' '}
-                    <Text style={{ fontSize: 15 }}>
-                                            {' '}
-                                            {item}
-                                          </Text>
-                  </Text>
-                                  </View>
-                                  ))
-                                  : <Text>No schedule</Text>)}
+                            ? <Text>No schedule</Text>
+                            : (schedule[date].hasOwnProperty('lunch')
+                              ? schedule[date].lunch.map((item) => (
+                                <View key={item} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                  <Text>
+                                    {'\u2B24'}
+                                    {' '}
+                                    <Text style={{ fontSize: 15 }}>
+                                      {' '}
+                                      {item}
+                                    </Text>
+                                  </Text>
+                                </View>
+                              ))
+                              : <Text>No schedule</Text>)}
                         </View>
                       </View>
                     </Dialog.Content>
@@ -441,62 +433,62 @@ function HomeScreen({ navigation }) {
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <TouchableOpacity onPress={() => toggleOptions3(true)}>
                     <Image
-                        source={require('../../assets/add.png')}
-                      />
+                      source={require('../../assets/add.png')}
+                    />
                     <Modal isVisible={options3} style={{ backgroundColor: 'green' }} coverScreen>
-                        <View style={{ margin: 50 }}>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Breakfast</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="breakfast"
-                                    status={breakfast == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setBreakfast(!breakfast)}
-                                  />
-                              </View>
-                          </View>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Lunch</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="lunch"
-                                    status={lunch == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setLunch(!lunch)}
-                                  />
-                              </View>
-                          </View>
-                          <View style={{ flexDirection: 'row', height: 60 }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <Text>Dinner</Text>
-                              </View>
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <RadioButton
-                                    value="dinner"
-                                    status={dinner == true ? 'checked' : 'unchecked'}
-                                    onPress={() => setDinner(!dinner)}
-                                  />
-                              </View>
+                      <View style={{ margin: 50 }}>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Breakfast</Text>
                           </View>
                           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Button
-                                text="Done"
-                                onPress={() => addToDinner()}
-                                style={{ text: { color: 'white' }, container: { width: '50%', marginBottom: 20, backgroundColor: '#FF5800' } }}
-                              />
+                            <RadioButton
+                              value="breakfast"
+                              status={breakfast == true ? 'checked' : 'unchecked'}
+                              onPress={() => setBreakfast(!breakfast)}
+                            />
                           </View>
                         </View>
-                      </Modal>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Lunch</Text>
+                          </View>
+                          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RadioButton
+                              value="lunch"
+                              status={lunch == true ? 'checked' : 'unchecked'}
+                              onPress={() => setLunch(!lunch)}
+                            />
+                          </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', height: 60 }}>
+                          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <Text>Dinner</Text>
+                          </View>
+                          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RadioButton
+                              value="dinner"
+                              status={dinner == true ? 'checked' : 'unchecked'}
+                              onPress={() => setDinner(!dinner)}
+                            />
+                          </View>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                          <Button
+                            text="Done"
+                            onPress={() => addToDinner()}
+                            style={{ text: { color: 'white' }, container: { width: '50%', marginBottom: 20, backgroundColor: '#FF5800' } }}
+                          />
+                        </View>
+                      </View>
+                    </Modal>
                   </TouchableOpacity>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <TouchableOpacity onPress={() => updateDinnerSchedule(!dinnerSchedule)}>
                     <Image
-                        source={require('../../assets/drop.png')}
-                      />
+                      source={require('../../assets/drop.png')}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -505,25 +497,25 @@ function HomeScreen({ navigation }) {
                 <Dialog style={{ width: 200, height: 200 }}>
                   <Dialog.Title><Text style={{ fontWeight: 'bold' }}>Dinner</Text></Dialog.Title>
                   <Dialog.Content>
-                        <View style={{ flexDirection: 'column', height: 60 }}>
-                          {!(schedule.hasOwnProperty(date))
-                            ? <Text>No schedule1</Text>
-                            : (schedule[date].hasOwnProperty('dinner')
-                              ? schedule[date].dinner.map((item) => (
-                                <View key={item} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                      <Text>
-                                        {'\u2B24'}
-                                        {' '}
-                                        <Text style={{ fontSize: 15 }}>
-                    {' '}
-                    {item}
-                  </Text>
-                                      </Text>
-                                    </View>
-                              ))
-                              : <Text>No schedule2</Text>)}
-                        </View>
-                      </Dialog.Content>
+                    <View style={{ flexDirection: 'column', height: 60 }}>
+                      {!(schedule.hasOwnProperty(date))
+                        ? <Text>No schedule1</Text>
+                        : (schedule[date].hasOwnProperty('dinner')
+                          ? schedule[date].dinner.map((item) => (
+                            <View key={item} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                              <Text>
+                                {'\u2B24'}
+                                {' '}
+                                <Text style={{ fontSize: 15 }}>
+                                  {' '}
+                                  {item}
+                                </Text>
+                              </Text>
+                            </View>
+                          ))
+                          : <Text>No schedule2</Text>)}
+                    </View>
+                  </Dialog.Content>
                 </Dialog>
               </View>
               )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -17,6 +17,7 @@ function HomeScreen({ navigation }) {
   const [toolTip2, toggleToolTip2] = useState(false);
   const [status, setStatus] = useState();
   const [copiedText, setCopiedText] = useState('');
+  // eslint-disable-next-line no-unused-vars
   const copyToClipboard = () => {
     Clipboard.setString('hello world');
   };
@@ -27,13 +28,14 @@ function HomeScreen({ navigation }) {
   const getData = async () => {
     const value = await AsyncStorage.getItem('first-visit');
     try {
-      if (value == 'true') {
+      if (value === 'true') {
         setStatus(value);
       }
     } catch (e) {
       // error reading value
       console.log(e);
     } finally {
+      // eslint-disable-next-line no-unsafe-finally
       return value;
     }
   };
@@ -94,7 +96,7 @@ function HomeScreen({ navigation }) {
               style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
             >
               <Text>
-                You're not on a meal plan currently, but you can create one.
+                You&apos;re not on a meal plan currently, but you can create one.
                 {' '}
               </Text>
             </View>
@@ -159,7 +161,7 @@ function HomeScreen({ navigation }) {
               style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
             >
               <Text>
-                You're not on a meal plan currently, but you can create one.
+                You&apos;re not on a meal plan currently, but you can create one.
                 {' '}
               </Text>
             </View>

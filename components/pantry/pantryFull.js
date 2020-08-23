@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function (props) {
   const navigation = useNavigation();
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <PantryFull {...props} navigation={navigation} />;
 }
 
@@ -173,8 +174,8 @@ class PantryFull extends Component {
                       <View key={itr.title} style={{ flexDirection: 'row', height: 60 }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', width: 100 }}>
                           <Image
-              source={itr.source}
-            />
+                            source={itr.source}
+                          />
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                           <Text>{itr.title}</Text>

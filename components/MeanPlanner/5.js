@@ -58,7 +58,8 @@ function HomeScreen() {
             title="Done"
             color="#FF5800"
             style={{ marginButtom: 20 }}
-            onPress={() => alert('Done')}
+            // eslint-disable-next-line no-undef
+            onPress={() => alert('Done')} // eslint-disable-line no-alert
           />
         </View>
       </View>

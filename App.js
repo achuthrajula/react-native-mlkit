@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Button } from 'react-native-material-ui';
 import AsyncStorage from '@react-native-community/async-storage';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import login from './components/User/login';
-import signup from './components/User/signup';
-import settingLayout from './components/settings/settingsLayout';
+// import login from './components/User/login';
+// import signup from './components/User/signup';
+// import settingLayout from './components/settings/settingsLayout';
 import recipe from './components/recipes/recipe';
 import rikuControl from './components/settings/riku-control';
 import newRecepie from './components/settings/newRecepie';
@@ -16,7 +16,7 @@ import userOnboard2 from './components/settings/userOnboard-2';
 import userProfile from './components/settings/userProfile';
 import bluetooth from './components/settings/bluetooth';
 import myDevices from './components/settings/myDevices';
-import pantryEmpty from './components/pantry/pantryEmpty';
+// import pantryEmpty from './components/pantry/pantryEmpty';
 import pantryFull from './components/pantry/pantryFull';
 import shoppingList from './components/pantry/shoppingList';
 import HomeScreen1 from './components/MeanPlanner/1.js';
@@ -32,7 +32,8 @@ function User() {
     try {
       const value = await AsyncStorage.getItem('first-visit');
 
-      if (value !== 'false') {
+      if (value !== null) {
+        console.log(value);
         // value previously stored
         // await AsyncStorage.setItem('first-visit', 'false')
       } else {
@@ -141,7 +142,8 @@ function Home() {
           headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
           headerRight: () => (
             <Button
-              onPress={() => alert('This is a button!')}
+              // eslint-disable-next-line no-undef
+              onPress={() => alert('This is a button!')} // eslint-disable-line no-alert
               text="Info"
               color="black"
             />
