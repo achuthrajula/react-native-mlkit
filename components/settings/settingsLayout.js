@@ -77,6 +77,14 @@ function settingsLayout({ navigation }) {
         }}
         onPress={() => alert('Will be added')}
       />
+      <Button
+        title="Scraping Test"
+        titleStyle={{ color: 'black' }}
+        buttonStyle={{
+          backgroundColor: 'white', marginBottom: 20, borderWidth: 1, borderColor: 'white', borderBottomColor: 'black',
+        }}
+        onPress={() => navigation.navigate('Scraping Test')}
+      />
     </View>
   );
 }
