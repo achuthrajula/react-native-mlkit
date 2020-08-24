@@ -1,32 +1,42 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-continue */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text
 } from 'react-native';
+import Clipboard from '@react-native-community/clipboard';
 import axios from 'axios';
-import { JSDOM } from 'jsdom';
+import parser from 'fast-html-parser';
 
 export default function test() {
   const [scrapedRecipes, setScrapedRecipes] = useState([]);
-  scrape();
+  getRecipeData('https://www.foodnetwork.com/recipes/food-network-kitchen/the-best-chicken-and-rice-8133711')
+    .then((recipe) => {
+      setScrapedRecipes([recipe]);
+    }).catch((err) => {
+      console.log(`Hmm: ${err}`);
+    });
   return (
     <View>
-      <Text>Hey There</Text>
+      <Text>{scrapedRecipes}</Text>
     </View>
   );
 }
 
-function scrape() {
-  function getRecipeData(html) {
-    const dom = new JSDOM(html);
+function getRecipeData(source) {
+  return axios.get(source).then((resp) => {
+    const html = resp.data;
+    const dom = parser.parse(html, { script: true });
 
-    const lds = dom.window.document.querySelectorAll(
-      'script[type="application/ld+json"]'
+    const lds = dom.querySelectorAll(
+      'script'
     );
 
     for (const ld of lds) {
-      const json = JSON.parse(ld.innerHTML);
+      if (ld.rawAttrs !== 'type="application/ld+json"') {
+        continue;
+      }
+      const json = JSON.parse(ld.text);
 
       if (Array.isArray(json)) {
         if (json.length < 1) {
@@ -57,8 +67,13 @@ function scrape() {
     }
 
     return false;
-  }
+  }).catch((reason) => {
+    console.log(`Wasn't able to get page source: ${reason}`);
+    return false;
+  });
+}
 
+function testScrapeFunction() {
   const testUrls = [
     'https://www.foodnetwork.com/recipes/food-network-kitchen/the-best-chicken-and-rice-8133711',
     'https://sallysbakingaddiction.com/quiche-recipe/',
@@ -67,19 +82,17 @@ function scrape() {
     'https://food52.com/recipes/81867-best-quiche-recipe'
   ];
 
-  for (let i = 0; i < testUrls.length; i += 1) {
-    axios
-      .get(testUrls[i])
-      .then((resp) => {
-        const parsedRecipe = getRecipeData(resp.data);
-        if (!parsedRecipe) {
-          console.log(`\n\nErrored on url ${testUrls[i]}\n${resp.data}\n\n`);
-        } else {
-          console.log(parsedRecipe);
-        }
-      })
-      .catch((err) => {
-        console.log(`Errored for url: ${testUrls[i]}\n${err}`);
-      });
-  }
+  axios
+    .get(testUrls[0])
+    .then((resp) => {
+      const parsedRecipe = getRecipeData(resp.data);
+      if (!parsedRecipe) {
+        console.log(`\n\nErrored on url ${testUrls[0]}\n\n`);
+      } else {
+        console.log(JSON.stringify(parsedRecipe, null, 2));
+      }
+    })
+    .catch((err) => {
+      console.log(`Errored for url: ${testUrls[0]}\n${err}`);
+    });
 }
