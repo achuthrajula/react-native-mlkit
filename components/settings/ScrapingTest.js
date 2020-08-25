@@ -9,16 +9,25 @@ import axios from 'axios';
 import parser from 'fast-html-parser';
 
 export default function test() {
-  const [scrapedRecipes, setScrapedRecipes] = useState([]);
-  getRecipeData('https://www.foodnetwork.com/recipes/food-network-kitchen/the-best-chicken-and-rice-8133711')
-    .then((recipe) => {
-      setScrapedRecipes([recipe]);
-    }).catch((err) => {
-      console.log(`Hmm: ${err}`);
-    });
+  const [scrapedRecipes, setScrapedRecipes] = useState({});
+  async function readClipboardAndFetch() {
+    const clipboardText = await Clipboard.getString();
+    if (isValidUrl(clipboardText)) {
+      getRecipeData(clipboardText)
+        .then((recipe) => {
+          setScrapedRecipes(recipe);
+        }).catch((err) => {
+          console.log(`Hmm: ${err}`);
+        });
+    } else {
+      setScrapedRecipes({ err: 'Invalid url' });
+    }
+  }
+  readClipboardAndFetch();
+
   return (
     <View>
-      <Text>{scrapedRecipes}</Text>
+      <Text>{JSON.stringify(scrapedRecipes)}</Text>
     </View>
   );
 }
@@ -71,6 +80,16 @@ function getRecipeData(source) {
     console.log(`Wasn't able to get page source: ${reason}`);
     return false;
   });
+}
+
+function isValidUrl(string) {
+  try {
+    new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return true;
 }
 
 function testScrapeFunction() {
