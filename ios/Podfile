@@ -87,6 +87,10 @@ target 'AwesomeProject' do
 
   pod 'RNCClipboard', :path => '../node_modules/@react-native-community/clipboard'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
   target 'AwesomeProjectTests' do
     inherit! :complete
     # Pods for testing
