@@ -11,8 +11,8 @@ type SharedItem = {
 };
 
 const Test = () => {
-  const [sharedData, setSharedData] = useState(null);
-  const [sharedMimeType, setSharedMimeType] = useState(null);
+  const [sharedData, setSharedData] = useState('');
+  const [sharedMimeType, setSharedMimeType] = useState('');
 
   const handleShare = useCallback((item: ?SharedItem) => {
     if (!item) {
