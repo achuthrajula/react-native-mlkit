@@ -85,6 +85,14 @@ function settingsLayout({ navigation }) {
         }}
         onPress={() => navigation.navigate('Scraping Test')}
       />
+      <Button
+        title="TFJS"
+        titleStyle={{ color: 'black' }}
+        buttonStyle={{
+          backgroundColor: 'white', marginBottom: 20, borderWidth: 1, borderColor: 'white', borderBottomColor: 'black',
+        }}
+        onPress={() => navigation.navigate('TFJS Test')}
+      />
     </View>
   );
 }
