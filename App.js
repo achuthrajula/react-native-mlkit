@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 // import login from './components/User/login';
 // import signup from './components/User/signup';
 // import settingLayout from './components/settings/settingsLayout';
-import recipe from './components/recipes/recipe';
+// import recipe from './components/recipes/recipe';
 import rikuControl from './components/settings/riku-control';
 import newRecepie from './components/settings/newRecepie';
 import userOnboard1 from './components/settings/userOnboard-1';
@@ -97,7 +97,7 @@ function h() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Recipe"
         component={Recipe}
         options={{
@@ -105,7 +105,7 @@ function h() {
             <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Recipe</Text>
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Settings"
         component={SettingsScreen}
@@ -177,13 +177,13 @@ function Home() {
   );
 }
 
-function Recipe() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Recipe" component={recipe} />
-    </Stack.Navigator>
-  );
-}
+// function Recipe() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen name="Recipe" component={recipe} />
+//     </Stack.Navigator>
+//   );
+// }
 
 function SettingsScreen() {
   return (

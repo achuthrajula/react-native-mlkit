@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "65528645732",
-    "firebase_url": "https://riku-stage.firebaseio.com",
-    "project_id": "riku-stage",
-    "storage_bucket": "riku-stage.appspot.com"
+    "project_number": "442156928764",
+    "firebase_url": "https://riku-test-d7efd.firebaseio.com",
+    "project_id": "riku-test-d7efd",
+    "storage_bucket": "riku-test-d7efd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:65528645732:android:324908bcd671e913b6b771",
+        "mobilesdk_app_id": "1:442156928764:android:c6eeb872543343a09b1179",
         "android_client_info": {
           "package_name": "com.awesomeproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "65528645732-2nl6kti04r2k18r3kssb4eb36t74pbf6.apps.googleusercontent.com",
+          "client_id": "442156928764-1a59ho9ff4q5i0quo2f11lbfsjmdr0m9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyACXlMCzA7NSy505szrI7GPcwoxX-KakCc"
+          "current_key": "AIzaSyC7_4HGSyOST6ru5oSpNafaMYX3jv6JA2w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "65528645732-2nl6kti04r2k18r3kssb4eb36t74pbf6.apps.googleusercontent.com",
+              "client_id": "442156928764-1a59ho9ff4q5i0quo2f11lbfsjmdr0m9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

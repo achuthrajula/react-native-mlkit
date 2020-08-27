@@ -4,11 +4,12 @@ import {
 } from 'react-native';
 import { utils } from '@react-native-firebase/app';
 import vision from '@react-native-firebase/ml-vision';
+import { RNCamera } from 'react-native-camera';
 
 export default function test() {
   return (
     <View>
-      <Text>ML Test</Text>
+      <RNCamera />
     </View>
   );
 }
