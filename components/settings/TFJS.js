@@ -54,35 +54,13 @@ export default class CameraScreen extends React.Component {
     };
   }
 
-  toggleWB() {
-    this.setState({
-      whiteBalance: wbOrder[this.state.whiteBalance],
-    });
-  }
-
-  toggleFocus() {
-    this.setState({
-      autoFocus: this.state.autoFocus === 'on' ? 'off' : 'on',
-    });
-  }
-
-  zoomOut() {
-    this.setState({
-      zoom: this.state.zoom - 0.1 < 0 ? 0 : this.state.zoom - 0.1,
-    });
-  }
-
-  zoomIn() {
-    this.setState({
-      zoom: this.state.zoom + 0.1 > 1 ? 1 : this.state.zoom + 0.1,
-    });
-  }
-
   setFocusDepth(depth) {
     this.setState({
       depth,
     });
   }
+
+  barcodeRecognized = ({ barcodes }) => this.setState({ barcodes });
 
   takePicture = async function () {
     if (this.camera) {
@@ -187,7 +165,29 @@ export default class CameraScreen extends React.Component {
     this.setState({ textBlocks });
   };
 
-  barcodeRecognized = ({ barcodes }) => this.setState({ barcodes });
+  zoomOut() {
+    this.setState({
+      zoom: this.state.zoom - 0.1 < 0 ? 0 : this.state.zoom - 0.1,
+    });
+  }
+
+  zoomIn() {
+    this.setState({
+      zoom: this.state.zoom + 0.1 > 1 ? 1 : this.state.zoom + 0.1,
+    });
+  }
+
+  toggleFocus() {
+    this.setState({
+      autoFocus: this.state.autoFocus === 'on' ? 'off' : 'on',
+    });
+  }
+
+  toggleWB() {
+    this.setState({
+      whiteBalance: wbOrder[this.state.whiteBalance],
+    });
+  }
 
   toggleFlash() {
     this.setState({

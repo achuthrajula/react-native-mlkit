@@ -17,7 +17,7 @@ import userProfile from './components/settings/userProfile';
 import bluetooth from './components/settings/bluetooth';
 import myDevices from './components/settings/myDevices';
 import ScrapingTest from './components/settings/ScrapingTest';
-import TFJS from './components/settings/TFJS';
+import LiveFeed from './components/settings/LiveFeed';
 // import pantryEmpty from './components/pantry/pantryEmpty';
 import pantryFull from './components/pantry/pantryFull';
 import shoppingList from './components/pantry/shoppingList';
@@ -199,7 +199,7 @@ function SettingsScreen() {
       <Stack.Screen name="New Recepie" component={newRecepie} />
       <Stack.Screen name="Bluetooth Pairing" component={bluetooth} />
       <Stack.Screen name="Scraping Test" component={ScrapingTest} />
-      <Stack.Screen name="TFJS Test" component={TFJS} />
+      <Stack.Screen name="TFJS Test" component={LiveFeed} />
     </Stack.Navigator>
   );
 }
