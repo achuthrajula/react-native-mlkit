@@ -1,3 +1,6 @@
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-console */
 import React from 'react';
 import {
@@ -49,18 +52,6 @@ export default class CameraScreen extends React.Component {
       textBlocks: [],
       barcodes: [],
     };
-  }
-
-  toggleFacing() {
-    this.setState({
-      type: this.state.type === 'back' ? 'front' : 'back',
-    });
-  }
-
-  toggleFlash() {
-    this.setState({
-      flash: flashModeOrder[this.state.flash],
-    });
   }
 
   toggleWB() {
@@ -155,35 +146,6 @@ export default class CameraScreen extends React.Component {
     </View>
   );
 
-  renderLandmarksOfFace(face) {
-    const renderLandmark = (position) => position && (
-    <View
-      style={[
-        styles.landmark,
-        {
-          left: position.x - landmarkSize / 2,
-          top: position.y - landmarkSize / 2,
-        },
-      ]}
-    />
-    );
-    return (
-      <View key={`landmarks-${face.faceID}`}>
-        {renderLandmark(face.leftEyePosition)}
-        {renderLandmark(face.rightEyePosition)}
-        {renderLandmark(face.leftEarPosition)}
-        {renderLandmark(face.rightEarPosition)}
-        {renderLandmark(face.leftCheekPosition)}
-        {renderLandmark(face.rightCheekPosition)}
-        {renderLandmark(face.leftMouthPosition)}
-        {renderLandmark(face.mouthPosition)}
-        {renderLandmark(face.rightMouthPosition)}
-        {renderLandmark(face.noseBasePosition)}
-        {renderLandmark(face.bottomMouthPosition)}
-      </View>
-    );
-  }
-
   renderFaces = () => (
     <View style={styles.facesContainer} pointerEvents="none">
       {this.state.faces.map(this.renderFace)}
@@ -226,6 +188,47 @@ export default class CameraScreen extends React.Component {
   };
 
   barcodeRecognized = ({ barcodes }) => this.setState({ barcodes });
+
+  toggleFlash() {
+    this.setState({
+      flash: flashModeOrder[this.state.flash],
+    });
+  }
+
+  renderLandmarksOfFace = (face) => {
+    const renderLandmark = (position) => position && (
+      <View
+        style={[
+          styles.landmark,
+          {
+            left: position.x - landmarkSize / 2,
+            top: position.y - landmarkSize / 2,
+          },
+        ]}
+      />
+    );
+    return (
+      <View key={`landmarks-${face.faceID}`}>
+        {renderLandmark(face.leftEyePosition)}
+        {renderLandmark(face.rightEyePosition)}
+        {renderLandmark(face.leftEarPosition)}
+        {renderLandmark(face.rightEarPosition)}
+        {renderLandmark(face.leftCheekPosition)}
+        {renderLandmark(face.rightCheekPosition)}
+        {renderLandmark(face.leftMouthPosition)}
+        {renderLandmark(face.mouthPosition)}
+        {renderLandmark(face.rightMouthPosition)}
+        {renderLandmark(face.noseBasePosition)}
+        {renderLandmark(face.bottomMouthPosition)}
+      </View>
+    );
+  }
+
+  toggleFacing() {
+    this.setState({
+      type: this.state.type === 'back' ? 'front' : 'back',
+    });
+  }
 
   renderBarcodes = () => (
     <View style={styles.facesContainer} pointerEvents="none">
@@ -381,6 +384,7 @@ export default class CameraScreen extends React.Component {
             onPress={this.state.isRecording ? () => {} : this.takeVideo.bind(this)}
           >
             {this.state.isRecording ? (
+              // eslint-disable-next-line jsx-a11y/accessible-emoji
               <Text style={styles.flipText}> ☕ </Text>
             ) : (
               <Text style={styles.flipText}> REC </Text>
