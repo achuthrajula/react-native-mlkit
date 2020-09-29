@@ -154,13 +154,25 @@ function HomeScreen({ navigation }) {
           <View style={{ margin: 10 }}>
             <Text style={{ color: '#FF5800', fontSize: 20, fontWeight: 'bold' }}>Meals</Text>
           </View>
-          <View style={{ marginLeft: 'auto' }}>
+          <View style={{ marginLeft: 'auto', flexDirection: 'row' }}>
             <Button
               raised
               primary
               text="Schedule for a week"
               style={{ text: { }, container: { marginBottom: 20, backgroundColor: '#FF5800' } }}
               onPress={() => toggleFutureScheduleModal(true)}
+            />
+            <Button
+              raised
+              primary
+              text="Next"
+              style={{
+                text: { color: 'black' },
+                container: {
+                  borderWidth: 1, marginBottom: 20, backgroundColor: 'white', marginLeft: 10
+                }
+              }}
+              onPress={() => navigation.navigate('Meal Plan 4')}
             />
             <Modal isVisible={futureScheduleModal} style={{ backgroundColor: 'white' }}>
               <View style={{ margin: 50 }}>

@@ -5,14 +5,14 @@ import { Button } from 'react-native-elements';
 function settingsLayout({ navigation }) {
   return (
     <View style={{ flex: 1, flexDirection: 'column', margin: 20 }}>
-      <Button
+      {/* <Button
         title="Share external"
         titleStyle={{ color: 'black' }}
         buttonStyle={{
           backgroundColor: 'white', marginBottom: 20, borderWidth: 1, borderColor: 'white', borderBottomColor: 'black',
         }}
         onPress={() => navigation.navigate('Test')}
-      />
+      /> */}
       <Button
         title="User Profile"
         titleStyle={{ color: 'black' }}
@@ -85,14 +85,14 @@ function settingsLayout({ navigation }) {
         }}
         onPress={() => alert('Will be added')}
       />
-      <Button
+      {/* <Button
         title="Scraping Test"
         titleStyle={{ color: 'black' }}
         buttonStyle={{
           backgroundColor: 'white', marginBottom: 20, borderWidth: 1, borderColor: 'white', borderBottomColor: 'black',
         }}
         onPress={() => navigation.navigate('Scraping Test')}
-      />
+      /> */}
 
     </View>
   );

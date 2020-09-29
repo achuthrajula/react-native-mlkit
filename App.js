@@ -5,8 +5,8 @@ import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-// import login from './components/User/login';
-// import signup from './components/User/signup';
+import login from './components/User/login';
+import signup from './components/User/signup';
 // import settingLayout from './components/settings/settingsLayout';
 import recipe from './components/recipes/recipe';
 import rikuControl from './components/settings/riku-control';
@@ -49,20 +49,20 @@ function User() {
   storeData();
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
-          name="Login"
-          component={login}
-          options={{
-            headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+      <Stack.Screen
+        name="Login"
+        component={login}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
         }}
       />
-       <Stack.Screen
-          name="Sign Up"
-          component={signup}
-          options={{
-            headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
+      <Stack.Screen
+        name="Sign Up"
+        component={signup}
+        options={{
+          headerTitleStyle: { alignSelf: 'center', color: '#FF5800' },
         }}
-      /> */}
+      />
       <Stack.Screen
         name="h"
         component={h}
@@ -198,7 +198,7 @@ function SettingsScreen() {
       <Stack.Screen name="My Devices" component={myDevices} />
       <Stack.Screen name="New Recepie" component={newRecepie} />
       <Stack.Screen name="Bluetooth Pairing" component={bluetooth} />
-      <Stack.Screen name="Scraping Test" component={ScrapingTest} />
+      {/* <Stack.Screen name="Scraping Test" component={ScrapingTest} /> */}
       <Stack.Screen name="Test" component={share} />
     </Stack.Navigator>
   );

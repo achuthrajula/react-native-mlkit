@@ -18,7 +18,7 @@ function Login({ navigation }) {
           <Formik
             initialValues={{ email: '', password: '' }}
             onSubmit={(values) => {
-              if (values.email === 'user@ftlabs.io' && values.password === 'password') navigation.navigate('h');
+              if (values.email === 'user@example.com' && values.password === 'password') navigation.navigate('h');
               else navigation.navigate('Login');
             }}
             validationSchema={yup.object().shape({
@@ -38,26 +38,26 @@ function Login({ navigation }) {
               <>
                 <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1, marginTop: 50 }}>
                   <TextInput
-                      style={{ fontSize: 20 }}
-                      onChangeText={handleChange('email')}
-                      value={values.email}
-                      onBlur={() => setFieldTouched('email')}
-                      placeholder="Enter your email or mobile number"
-                      editable
-                    />
+                    style={{ fontSize: 20 }}
+                    onChangeText={handleChange('email')}
+                    value={values.email}
+                    onBlur={() => setFieldTouched('email')}
+                    placeholder="Enter your email or mobile number"
+                    editable
+                  />
                 </View>
                 {touched.email && errors.email
               && <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>}
                 <View style={{ borderBottomColor: '#000000', borderBottomWidth: 1, marginTop: 20 }}>
                   <TextInput
-                      secureTextEntry
-                      style={{ fontSize: 20 }}
-                      onChangeText={handleChange('password')}
-                      value={values.password}
-                      onBlur={() => setFieldTouched('password')}
-                      placeholder="Enter your password"
-                      editable
-                    />
+                    secureTextEntry
+                    style={{ fontSize: 20 }}
+                    onChangeText={handleChange('password')}
+                    value={values.password}
+                    onBlur={() => setFieldTouched('password')}
+                    placeholder="Enter your password"
+                    editable
+                  />
                 </View>
                 {touched.password && errors.password
               && <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>}
@@ -66,13 +66,13 @@ function Login({ navigation }) {
                 }}
                 >
                   <View style={{ width: 300 }}>
-                      <Button
-                          buttonStyle={{ backgroundColor: '#FF5800' }}
-                          title="Login"
-                          disabled={!isValid}
-                          onPress={handleSubmit}
-                        />
-                    </View>
+                    <Button
+                      buttonStyle={{ backgroundColor: '#FF5800' }}
+                      title="Login"
+                      disabled={!isValid}
+                      onPress={handleSubmit}
+                    />
+                  </View>
                 </View>
               </>
             )}
