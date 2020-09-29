@@ -1,4 +1,4 @@
-# react-native-ml-kit
+# react-native-mlkit
 
 This project is built using `react-native` that serves as social media platform for food blogging and also uses google's `ml-kit` for various purposes like real time object-detection,
 image-classification, face-detection, Text-recognition etc. 
