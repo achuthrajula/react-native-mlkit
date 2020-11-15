@@ -12,7 +12,7 @@ The app built has various features as listed below:
 * User made recipes.
 * A medium to connect with various fitness apps using BLE technology.
 
-### The initial idea of suggesting the best possible recipe using `ml-kit` by clicking a snapshot of the ingredients is left mid way, passionate Devs out there are most welcome to join us and work together.
+### The initial idea is to suggest the best possible recipe using `ml-kit` by clicking a snapshot of the ingredients, passionate Devs out there are most welcome to join us and work together.
 
 The snapshots of various features are attached below:
 
